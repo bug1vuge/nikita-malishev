@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { About } from './components/About';
 import { Benefits } from './components/Benefits';
+import { Booking } from './components/Booking';
 import { Faq } from './components/Faq';
 import { Footer } from './components/Footer';
 import { Formats } from './components/Formats';
@@ -37,6 +38,7 @@ export function App() {
         <Gallery />
         <Reviews />
         <Faq />
+        <Booking />
       </main>
       <Footer />
       <MobileBar />

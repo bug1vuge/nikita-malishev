@@ -1,0 +1,101 @@
+/* Рамка и фокус — как у остальных полей формы */
+.stepper {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 54px;
+  padding: 5px;
+  border: 2px solid rgba(43, 10, 27, 0.16);
+  border-radius: 14px;
+  background: #fff;
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s;
+}
+
+.stepper:hover {
+  border-color: rgba(43, 10, 27, 0.32);
+}
+
+.stepper:focus-within {
+  border-color: var(--night-2);
+  box-shadow: 0 0 0 4px rgba(242, 211, 160, 0.55);
+}
+
+.has-error .stepper {
+  border-color: var(--error);
+}
+
+.stepper__btn {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: var(--butter);
+  color: var(--ink);
+  touch-action: manipulation; /* без задержки и зума по двойному тапу */
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color 0.2s,
+    transform 0.25s var(--ease-bounce),
+    opacity 0.2s;
+}
+
+.stepper__btn svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+.stepper__btn:hover:not(:disabled) {
+  background: var(--gold);
+}
+
+.stepper__btn:active:not(:disabled) {
+  transform: scale(0.9);
+}
+
+.stepper__btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.stepper__btn:focus-visible {
+  outline: 3px solid var(--gold-deep);
+  outline-offset: 1px;
+}
+
+.stepper__input {
+  flex: 1 1 0; /* без этого поле берёт «родную» ширину ~20 символов и распирает рамку */
+  width: 0;
+  min-width: 0;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  appearance: none;
+}
+
+.stepper__input::placeholder {
+  color: rgba(43, 10, 27, 0.4);
+  font-weight: 400;
+}
