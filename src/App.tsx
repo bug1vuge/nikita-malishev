@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { Header } from './components/Header';
+import { Hero } from './components/Hero';
+import { Marquee } from './components/Marquee';
 import { MobileBar } from './components/MobileBar';
 import { initButtonGlow, initParallax, initReveal } from './lib/motion';
 
@@ -15,7 +17,10 @@ export function App() {
         Перейти к содержимому
       </a>
       <Header />
-      <main id="main" />
+      <main id="main">
+        <Hero />
+        <Marquee />
+      </main>
       <MobileBar />
     </>
   );
