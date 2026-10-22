@@ -1,0 +1,8 @@
+node_modules
+dist
+dist-ssr
+dist-single
+.env
+.env.local
+photos-src/*
+!photos-src/.gitkeep

@@ -1,0 +1,422 @@
+/* ───────── Токены ─────────
+   Сцена в свете прожектора: бархат (night), шампань (gold), коралл (rose),
+   светлые секции цвета жемчуга (butter). Имена — роли, а не оттенки. */
+:root {
+  --night: #3a0d24;
+  --night-2: #4d1430;
+  --night-3: #260818;
+  --ink: #2b0a1b;
+  --gold: #f2d3a0;
+  --gold-deep: #d9a85f;
+  --rose: #ff8f7a;
+  --rose-ink: #c2453a; /* розовый для текста на белом — контраст 4.5:1 */
+  --butter: #f7eadb;
+  --butter-2: #efd3b0;
+  --cream: #fdf5ec;
+  --cream-muted: rgba(253, 245, 236, 0.74);
+  --ink-muted: rgba(43, 10, 27, 0.72);
+  --error: #c6233f;
+  --error-on-night: #ff9aae;
+  --success: #1f7a4d;
+
+  --font-display: 'Unbounded', 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Onest', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+
+  --fs-body: 1.0625rem;
+  --fs-small: 0.9375rem;
+  --fs-lead: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  --fs-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+  --fs-h2: clamp(1.75rem, 1.05rem + 2.9vw, 3.5rem);
+
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+  --maxw: 1240px;
+  --section-y: clamp(4.5rem, 3rem + 7vw, 9rem);
+  --radius-lg: 28px;
+  --radius-md: 16px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --header-h: 72px;
+}
+
+/* ───────── Сброс ───────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 12px);
+}
+
+body {
+  margin: 0;
+  background: var(--night);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+@supports (overflow: clip) {
+  body {
+    overflow-x: clip;
+  }
+}
+
+img,
+svg,
+canvas,
+picture {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+h3 {
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ───────── Утилиты ───────── */
+.container {
+  width: 100%;
+  max-width: calc(var(--maxw) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-y);
+}
+
+.section--butter {
+  background: var(--butter);
+  color: var(--ink);
+}
+
+.section--night-deep {
+  background: var(--night-3);
+}
+
+.section-head {
+  max-width: 56rem;
+  margin-bottom: clamp(2.5rem, 2rem + 3vw, 4.5rem);
+}
+
+.section-head p {
+  margin-top: 1.25rem;
+  font-size: var(--fs-lead);
+  max-width: 40rem;
+  color: var(--cream-muted);
+}
+
+.section--butter .section-head p {
+  color: var(--ink-muted);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background: var(--gold);
+  color: var(--ink);
+  font-weight: 600;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ───────── Кнопки ───────── */
+.btn {
+  --btn-bg: var(--gold);
+  --btn-fg: var(--ink);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 56px;
+  padding: 0.9rem 1.75rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  isolation: isolate;
+  overflow: hidden;
+  transition:
+    transform 0.35s var(--ease-bounce),
+    box-shadow 0.35s var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    120px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.55),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 30px -12px rgba(242, 211, 160, 0.7);
+}
+
+.btn:hover::before {
+  opacity: 1;
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--cream);
+  box-shadow: inset 0 0 0 2px rgba(253, 245, 236, 0.5);
+}
+
+.btn--ghost:hover {
+  box-shadow: inset 0 0 0 2px var(--cream);
+}
+
+.btn--ink {
+  --btn-bg: var(--ink);
+  --btn-fg: var(--cream);
+}
+
+.btn--ink:hover {
+  box-shadow: 0 14px 30px -12px rgba(43, 10, 27, 0.6);
+}
+
+.btn svg {
+  width: 22px;
+  height: 22px;
+  flex: none;
+}
+
+/* ───────── Появление при скролле ─────────
+   Скрываем, только если JS работает (класс .js ставится в <head>). */
+.js [data-reveal] {
+  opacity: 0;
+  transition:
+    opacity 0.9s var(--ease-out),
+    transform 0.9s var(--ease-out),
+    clip-path 1.1s var(--ease-out);
+  transition-delay: var(--delay, 0s);
+}
+
+.js [data-reveal='up'] {
+  transform: translate3d(0, 48px, 0);
+}
+
+.js [data-reveal='left'] {
+  transform: translate3d(-56px, 0, 0);
+}
+
+.js [data-reveal='right'] {
+  transform: translate3d(56px, 0, 0);
+}
+
+.js [data-reveal='scale'] {
+  transform: scale(0.9) rotate(-2deg);
+}
+
+.js [data-reveal='curtain'] {
+  opacity: 1;
+  clip-path: inset(100% 0 0 0 round var(--radius-lg));
+}
+
+.js [data-reveal][data-in] {
+  opacity: 1;
+  transform: none;
+}
+
+.js [data-reveal='curtain'][data-in] {
+  clip-path: inset(0 0 0 0 round var(--radius-lg));
+}
+
+/* Параллакс: значение --py выставляет JS */
+[data-parallax] {
+  will-change: transform;
+  transform: translate3d(0, var(--py, 0px), 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+
+  [data-parallax] {
+    transform: none;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --fs-body: 1rem;
+    --header-h: 64px;
+  }
+
+  body {
+    padding-bottom: 76px; /* место под нижнюю панель контактов */
+  }
+
+  .btn {
+    min-height: 52px;
+    padding: 0.85rem 1.4rem;
+    font-size: 1rem;
+  }
+}
+
+[data-parallax-axis='x'] {
+  transform: translate3d(var(--px, 0px), 0, 0);
+}
+
+/* ───────── Фото ───────── */
+.photo {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(242, 211, 160, 0.35), transparent 55%),
+    linear-gradient(160deg, var(--night-2), var(--night-3));
+}
+
+.photo picture,
+.photo img {
+  width: 100%;
+  height: 100%;
+}
+
+.photo img {
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-out);
+}
+
+.photo.is-loaded img,
+html:not(.js) .photo img {
+  opacity: 1;
+}
+
+.photo__fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 70% 20%, rgba(255, 143, 122, 0.45), transparent 50%),
+    radial-gradient(circle at 25% 80%, rgba(242, 211, 160, 0.5), transparent 55%),
+    linear-gradient(160deg, var(--night-2), var(--night-3));
+  color: rgba(253, 245, 236, 0.85);
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 6vw, 4rem);
+}
