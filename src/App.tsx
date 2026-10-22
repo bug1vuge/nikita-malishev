@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { About } from './components/About';
+import { Formats } from './components/Formats';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { Marquee } from './components/Marquee';
@@ -22,6 +23,7 @@ export function App() {
         <Hero />
         <Marquee />
         <About />
+        <Formats />
       </main>
       <MobileBar />
     </>
