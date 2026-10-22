@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /lead.php
+
+Sitemap: https://malyshev-event.ru/sitemap.xml
