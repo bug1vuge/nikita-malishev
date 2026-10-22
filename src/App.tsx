@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 import { About } from './components/About';
+import { Benefits } from './components/Benefits';
 import { Formats } from './components/Formats';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { Marquee } from './components/Marquee';
 import { MobileBar } from './components/MobileBar';
 import { Packages } from './components/Packages';
+import { Steps } from './components/Steps';
 import { initButtonGlow, initParallax, initReveal } from './lib/motion';
 
 export function App() {
@@ -26,6 +28,8 @@ export function App() {
         <About />
         <Formats />
         <Packages />
+        <Benefits />
+        <Steps />
       </main>
       <MobileBar />
     </>

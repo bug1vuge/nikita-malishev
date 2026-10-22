@@ -1,0 +1,105 @@
+.steps__list {
+  --progress: 0;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Линия под номерами */
+.steps__list::before,
+.steps__list::after {
+  content: '';
+  position: absolute;
+  left: 28px;
+  right: 0;
+  top: 27px;
+  height: 2px;
+  border-radius: 2px;
+}
+
+.steps__list::before {
+  background: rgba(253, 245, 236, 0.15);
+}
+
+.steps__list::after {
+  background: linear-gradient(90deg, var(--gold), var(--rose));
+  transform-origin: left;
+  transform: scaleX(var(--progress));
+}
+
+.steps__item {
+  position: relative;
+  z-index: 1;
+}
+
+.steps__num {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 1.5rem;
+  border-radius: 50%;
+  background: var(--night);
+  box-shadow: inset 0 0 0 2px rgba(253, 245, 236, 0.3);
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  transition:
+    background-color 0.4s,
+    color 0.4s,
+    box-shadow 0.4s,
+    transform 0.5s var(--ease-bounce);
+}
+
+.steps__item.is-done .steps__num {
+  background: var(--gold);
+  color: var(--ink);
+  box-shadow: 0 0 0 6px rgba(242, 211, 160, 0.2);
+  transform: scale(1.06);
+}
+
+.steps__item h3 {
+  margin-bottom: 0.5rem;
+}
+
+.steps__item p {
+  color: var(--cream-muted);
+  font-size: var(--fs-small);
+}
+
+@media (max-width: 1023px) {
+  .steps__list {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+    padding-left: 0;
+  }
+  .steps__list::before,
+  .steps__list::after {
+    left: 27px;
+    right: auto;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    height: auto;
+  }
+  .steps__list::after {
+    transform-origin: top;
+    transform: scaleY(var(--progress));
+    background: linear-gradient(180deg, var(--gold), var(--rose));
+  }
+  .steps__item {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr);
+    column-gap: 1.5rem;
+  }
+  .steps__num {
+    grid-row: span 2;
+    margin-bottom: 0;
+  }
+  .steps__item p {
+    max-width: 34rem;
+  }
+}
