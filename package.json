@@ -8,6 +8,7 @@
     "build:ssr": "vite build --ssr src/entry-server.tsx --outDir dist-ssr",
     "prerender": "node scripts/prerender.mjs",
     "build": "npm run typecheck && npm run build:client && npm run build:ssr && npm run prerender",
+    "validate": "html-validate dist/index.html",
     "images": "node scripts/optimize-images.mjs",
     "preview": "vite preview"
   },
