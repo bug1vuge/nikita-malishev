@@ -8,6 +8,7 @@ import { Hero } from './components/Hero';
 import { Marquee } from './components/Marquee';
 import { MobileBar } from './components/MobileBar';
 import { Packages } from './components/Packages';
+import { Reviews } from './components/Reviews';
 import { Steps } from './components/Steps';
 import { initButtonGlow, initParallax, initReveal } from './lib/motion';
 
@@ -32,6 +33,7 @@ export function App() {
         <Benefits />
         <Steps />
         <Gallery />
+        <Reviews />
       </main>
       <MobileBar />
     </>
