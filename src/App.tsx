@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+import { Header } from './components/Header';
+import { MobileBar } from './components/MobileBar';
 import { initButtonGlow, initParallax, initReveal } from './lib/motion';
 
 export function App() {
@@ -12,7 +14,9 @@ export function App() {
       <a className="skip-link" href="#main">
         Перейти к содержимому
       </a>
+      <Header />
       <main id="main" />
+      <MobileBar />
     </>
   );
 }

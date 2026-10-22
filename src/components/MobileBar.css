@@ -1,0 +1,65 @@
+.mobile-bar {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .mobile-bar {
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    z-index: 40;
+    display: flex;
+    gap: 6px;
+    padding: 6px;
+    border-radius: 999px;
+    background: rgba(38, 8, 24, 0.9);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    box-shadow:
+      0 0 0 1px rgba(253, 245, 236, 0.1),
+      0 16px 40px -10px rgba(0, 0, 0, 0.6);
+    animation: bar-in 0.6s var(--ease-out) 1.6s both;
+  }
+
+  .mobile-bar a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    min-width: 50px;
+    height: 50px;
+    border-radius: 999px;
+    background: rgba(253, 245, 236, 0.1);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+  }
+
+  .mobile-bar svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .mobile-bar__call {
+    flex: 1;
+    background: var(--gold) !important;
+    color: var(--ink);
+  }
+
+  .mobile-bar__book {
+    padding-inline: 1rem;
+    background: var(--rose) !important;
+    color: var(--ink);
+  }
+
+  .menu-open .mobile-bar {
+    display: none;
+  }
+}
+
+@keyframes bar-in {
+  from {
+    transform: translateY(120%);
+  }
+}
