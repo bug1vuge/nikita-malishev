@@ -1,0 +1,229 @@
+.about {
+  padding-top: calc(var(--section-y) + 2rem);
+  overflow: hidden;
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: center;
+}
+
+.about__media {
+  position: relative;
+  padding: 1.25rem 10% 16% 0; /* сверху — место для стикера, справа и снизу — для круглого фото */
+}
+
+.about__photo {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.about__photo .photo {
+  transform: scale(1.06); /* запас под параллакс без заметной обрезки кадра */
+}
+
+.about__photo--main {
+  border-radius: var(--radius-lg) var(--radius-lg) var(--radius-lg) 110px;
+}
+
+.about__photo--small {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 40%;
+  border-radius: 999px;
+  box-shadow:
+    0 0 0 8px var(--butter),
+    0 30px 60px -25px rgba(43, 10, 27, 0.5);
+}
+
+.about__note {
+  position: absolute;
+  left: -0.75rem;
+  top: 0; /* на краю фото, не закрывает лицо */
+  padding: 0.85rem 1.2rem;
+  border-radius: 18px 18px 18px 4px;
+  background: var(--rose);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.3rem);
+  line-height: 1.15;
+  rotate: -6deg;
+  box-shadow: 0 16px 30px -16px rgba(43, 10, 27, 0.6);
+}
+
+.about__text h2 {
+  margin-bottom: 1.75rem;
+}
+
+.about__p {
+  max-width: 38rem;
+  font-size: var(--fs-lead);
+  color: var(--ink-muted);
+}
+
+.about__p + .about__p {
+  margin-top: 1rem;
+}
+
+.about__traits {
+  display: grid;
+  gap: 1.25rem;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about__traits li {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.about__traits svg {
+  width: 30px;
+  height: 30px;
+  color: var(--rose);
+  margin-top: 2px;
+}
+
+.about__traits h3 {
+  margin-bottom: 0.2rem;
+}
+
+.about__traits p {
+  color: var(--ink-muted);
+}
+
+.about__facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 2.75rem 0 0;
+  padding-top: 2rem;
+  border-top: 2px solid rgba(43, 10, 27, 0.14);
+}
+
+.about__facts div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* цифры на одной линии, даже если подписи разной длины */
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.about__facts dd {
+  order: -1; /* в разметке dt идёт первым (так требует HTML), визуально цифра сверху */
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 1.2rem + 1.7vw, 2.6rem);
+  line-height: 1;
+}
+
+.about__facts dt {
+  font-size: var(--fs-small);
+  color: var(--ink-muted);
+  line-height: 1.35;
+}
+
+@media (max-width: 1023px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+  .about__media {
+    max-width: 520px;
+    margin-inline: auto;
+    width: 100%;
+  }
+}
+
+/* Телефон: цифры столбиком — число слева, подпись справа */
+@media (max-width: 599px) {
+  .about__facts {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+  .about__facts div {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+  .about__facts dd {
+    flex: 0 0 8.75rem; /* одна колонка для всех цифр, включая «с 2016» — подписи стоят ровно */
+    font-size: 2rem;
+  }
+  .about__facts dt {
+    font-size: 0.9375rem;
+  }
+}
+
+/* ───── Конкурсы ───── */
+.about__awards {
+  margin-top: 2.25rem;
+}
+
+.about__awards-title {
+  margin-bottom: 0.9rem;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--ink-muted);
+}
+
+.about__awards ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about__awards li {
+  display: grid;
+  align-content: start;
+  gap: 0.15rem;
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius-md);
+  background: var(--night);
+  color: var(--cream);
+}
+
+.about__award-place {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  line-height: 1.1;
+  color: var(--gold);
+}
+
+.about__award-of {
+  font-size: 0.875rem;
+  color: var(--cream-muted);
+}
+
+.about__award-name {
+  margin-top: 0.35rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+@media (max-width: 599px) {
+  .about__awards ul {
+    grid-template-columns: 1fr;
+  }
+  .about__awards li {
+    grid-template-columns: auto 1fr;
+    column-gap: 0.75rem;
+    align-items: baseline;
+  }
+  .about__award-of {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .about__award-name {
+    grid-column: 1 / -1;
+    margin-top: 0;
+  }
+}
